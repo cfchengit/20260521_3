@@ -156,7 +156,8 @@
                       :style="{
                         background: area.level.bg,
                         borderColor: area.level.color,
-                        color: area.level.color
+                color: '#ffffff',
+                textShadow: '0 1px 2px rgba(0,0,0,0.4)'
                       }"
                     >
                       <span class="area-county">{{ area.county }}</span>
@@ -541,7 +542,7 @@ onUnmounted(() => {
   padding: 3px 8px; border-radius: 6px; border: 1px solid;
   font-size: 0.72rem; display: flex; gap: 6px; align-items: center;
 }
-.area-county   { color: #94a3b8; }
+.area-county   { color: inherit; }
 .area-intensity { font-weight: 700; }
 
 .report-image-wrap { margin-bottom: 10px; }
