@@ -137,7 +137,13 @@
                 <span>🔽 深度 {{ q.depth }} 公里</span>
                 <span v-if="q.maxIntensity">
                   震度
-                  <strong :style="{ color: getIntensityLevel(q.maxIntensity).color }">
+                <strong :style="{
+                  backgroundColor: getIntensityLevel(q.maxIntensity).color,
+                  color: '#ffffff',
+                  padding: '2px 6px',
+                  borderRadius: '4px',
+                  textShadow: '0 1px 2px rgba(0,0,0,0.4)'
+                }">
                     {{ q.maxIntensity }} 級
                   </strong>
                 </span>
@@ -319,15 +325,15 @@ function renderMarkers() {
         <div style="font-size:1.6rem;font-weight:700;color:${color}">
           M ${q.magnitude.toFixed(1)}
         </div>
-        <div style="font-size:0.8rem;color:#94a3b8;margin-bottom:8px">
+        <div style="font-size:0.8rem;color:#475569;margin-bottom:8px">
           ${formatDateTime(q.time)} ・ ${timeAgo(q.time)}
         </div>
-        <div style="font-size:0.82rem;color:#e2e8f0;margin-bottom:4px">
+        <div style="font-size:0.85rem;color:#0f172a;font-weight:600;margin-bottom:4px">
           📍 ${q.location}
         </div>
-        <div style="display:flex;gap:16px;font-size:0.8rem;color:#94a3b8">
+        <div style="display:flex;gap:16px;font-size:0.8rem;color:#1e293b;font-weight:600;align-items:center">
           <span>🔽 深度 ${q.depth} 公里</span>
-          ${q.maxIntensity ? `<span>震度 ${q.maxIntensity} 級</span>` : ''}
+          ${q.maxIntensity ? `<span>震度 <strong style="background:${getIntensityLevel(q.maxIntensity).color}; color:#ffffff; padding:2px 6px; border-radius:4px; text-shadow:0 1px 2px rgba(0,0,0,0.4)">${q.maxIntensity} 級</strong></span>` : ''}
         </div>
       </div>
     `, { maxWidth: 280 })
@@ -518,8 +524,8 @@ onUnmounted(() => {
 .mag-val   { font-size: 1rem; font-weight: 700; line-height: 1; }
 
 .quake-time-info { flex: 1; }
-.quake-time { font-size: 0.78rem; color: #94a3b8; }
-.quake-ago  { font-size: 0.7rem; color: #475569; }
+.quake-time { font-size: 0.78rem; color: #f1f5f9; font-weight: 500; }
+.quake-ago  { font-size: 0.7rem; color: #cbd5e1; }
 
 .quake-type-badge {
   font-size: 0.65rem; padding: 3px 8px; border-radius: 20px; font-weight: 600; flex-shrink: 0;
@@ -527,15 +533,15 @@ onUnmounted(() => {
 .quake-type-badge.sig { background: rgba(239,68,68,.15); color: #fca5a5; }
 .quake-type-badge.sml { background: rgba(59,130,246,.15); color: #93c5fd; }
 
-.quake-location { font-size: 0.8rem; color: #94a3b8; margin-bottom: 5px; line-height: 1.4; }
-.quake-meta { display: flex; gap: 12px; font-size: 0.75rem; color: #64748b; }
+.quake-location { font-size: 0.85rem; color: #ffffff; margin-bottom: 5px; line-height: 1.4; font-weight: 600; }
+.quake-meta { display: flex; gap: 12px; font-size: 0.8rem; color: #ffffff; font-weight: 500; align-items: center; }
 
 /* 詳細資訊展開 */
 .quake-detail {
   margin-top: 10px; padding-top: 10px; border-top: 1px solid #1e293b;
 }
 .detail-title {
-  font-size: 0.75rem; font-weight: 600; color: #64748b; margin-bottom: 6px; margin-top: 4px;
+  font-size: 0.8rem; font-weight: 700; color: #ffffff; margin-bottom: 6px; margin-top: 4px;
 }
 .intensity-grid { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 10px; }
 .intensity-item {
@@ -555,10 +561,10 @@ onUnmounted(() => {
 .report-link:hover { color: #60a5fa; }
 
 /* 空狀態 */
-.empty { text-align: center; color: #64748b; padding: 40px 0; font-size: 0.9rem; }
+.empty { text-align: center; color: #cbd5e1; padding: 40px 0; font-size: 0.9rem; }
 .no-key {
   display: flex; flex-direction: column; align-items: center; justify-content: center;
-  gap: 12px; padding: 60px 20px; color: #64748b; text-align: center; font-size: 0.9rem;
+  gap: 12px; padding: 60px 20px; color: #cbd5e1; text-align: center; font-size: 0.9rem;
 }
 .no-key div:first-child { font-size: 3rem; }
 .no-key button {
